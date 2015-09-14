@@ -1,2 +1,2 @@
 # EventCalendar
-Calendar event with collection view.
+iOS Calendar event with collection view.
