@@ -85,8 +85,8 @@
         NSDate *endDate = [self randomDate:startDate];
 
         Event *event = [Event new];
-        event.startDate = [startDate timeIntervalSince1970] * 1000;
-        event.endDate = [endDate timeIntervalSince1970] * 1000;
+        event.startDate = [startDate timeIntervalSince1970];
+        event.endDate = [endDate timeIntervalSince1970];
         event.eventColor = [self colorWithI:i];
         event.isAllday = NO;
         [evets addObject:event];
@@ -155,8 +155,8 @@
 #pragma mark -- ECUIViewDelegate
 - (void)ecEventDidSelected:(id<ECEventDelegate>)event{
     NSLog(@"%s startDate:%@, endDate:%@", __FUNCTION__,
-          [NSDate dateWithTimeIntervalSince1970:event.startDate/1000],
-          [NSDate dateWithTimeIntervalSince1970:event.endDate/1000]);
+          [NSDate dateWithTimeIntervalSince1970:event.startDate],
+          [NSDate dateWithTimeIntervalSince1970:event.endDate]);
 }
 
 #pragma mark -- ECUIViewDataSource

@@ -420,7 +420,7 @@ NSString *const kECCollectionViewCellIdentifier = @"kECCollectionViewCellIdentif
 
 - (BOOL)isAllday:(id<ECEventDelegate>)entity{
     
-    NSLog(@"%s %f",__FUNCTION__, (([self getDateHour:entity.endDate] - [self getDateHour:entity.startDate]) - ALL_DAY_SEC + 1));
+//    NSLog(@"%s %f",__FUNCTION__, (([self getDateHour:entity.endDate] - [self getDateHour:entity.startDate]) - ALL_DAY_SEC + 1));
     
     return (([self getDateHour:entity.endDate] - [self getDateHour:entity.startDate]) - ALL_DAY_SEC + 1) >= 0;
 }
@@ -559,11 +559,6 @@ NSString *const kECCollectionViewCellIdentifier = @"kECCollectionViewCellIdentif
     }
     
     [self setNeedsDisplay];
-    
-//    for(UIButton *b in _eventButtons){
-//        [_collectionView addSubview:b];
-//    }
-    
 }
 
 - (BOOL) crossing:(id<ECEventDelegate>)event1 other:(id<ECEventDelegate>)event2{
@@ -611,66 +606,19 @@ NSString *const kECCollectionViewCellIdentifier = @"kECCollectionViewCellIdentif
     return arrs;
 }
 
-//(_cellW - (evtCt+1)*2) / evtCt
-
-- (CGFloat)getEventW:(NSArray*)events entity:(id<ECEventDelegate>)curEvent eventIndex:(int*)preCt{
-    
-    NSMutableArray *thisEvents = [NSMutableArray arrayWithArray:events];
-    
-//    [thisEvents removeObject:curEvent];
-    
-    int ct = 1;
-    
-//    int preCt = 0;
-    
-    BOOL isLeft = YES;
-    
-    CGFloat curEndT = [self getDateHour:curEvent.endDate];
-    CGFloat curStartT = [self getDateHour:curEvent.startDate];
-    
-    for(id<ECEventDelegate> event in thisEvents){
-        if (![event isEqual:curEvent]) {
-            CGFloat startT = [self getDateHour:event.startDate];
-            CGFloat endT = [self getDateHour:event.endDate];
-            
-            if ((curStartT > startT && curStartT > endT)||
-                (curEndT < startT && curStartT < startT)) {
-                // 两个时间段不相交
-                
-            }else{
-                // 两个时间段相交
-                ct++;
-                
-                if (isLeft) {
-                    *preCt++;
-                }
-            }
-        }else{
-            isLeft = NO;
-        }
-    }
-    
-    return (_cellW - (ct+1)*2) / ct;
-}
-
 - (CGFloat)getDateHour:(long)curMils{
     //get seconds since 1970
-    NSTimeInterval interval = (curMils)/1000;
+    NSTimeInterval interval = (curMils);
     int daySeconds = 24 * 60 * 60;
     //calculate integer type of days
     NSInteger allDays = interval / daySeconds;
     
     return  interval - (allDays * daySeconds);
-    
-//    NSDate *dateNoHour = [NSDate dateWithTimeIntervalSince1970:allDays * daySeconds];
-//    
-//    return [date timeIntervalSinceDate:dateNoHour];
 }
 
 - (CGRect) rectWith:(int)colume eventIndex:(int)index eventEntity:(id<ECEventDelegate>)event weight:(CGFloat)w{
     
     CGFloat totalT = ALL_DAY_SEC;
-    CGFloat totalH = _collectionView.contentSize.height;
     
     CGFloat startT = [self getDateHour:event.startDate];
     CGFloat endT = [self getDateHour:event.endDate];
