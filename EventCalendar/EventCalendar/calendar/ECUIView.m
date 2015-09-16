@@ -186,7 +186,10 @@ NSString *const kECCollectionViewCellIdentifier = @"kECCollectionViewCellIdentif
 - (void)handleAddEvent:(id)sender{
     [_addEventButton removeFromSuperview];
     
-    NSLog(@"%s handle add event.", __FUNCTION__);
+//    NSLog(@"%s handle add event.", __FUNCTION__);
+    if ([_delegate respondsToSelector:@selector(handleAddEvent:)]) {
+        [_delegate performSelector:@selector(handleAddEvent:) withObject:sender];
+    }
 }
 
 #pragma mark -- UICollectionViewDataSource

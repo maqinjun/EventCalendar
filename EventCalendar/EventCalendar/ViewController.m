@@ -153,6 +153,10 @@
 
 
 #pragma mark -- ECUIViewDelegate
+
+- (void)handleAddEvent:(id)sender{
+    NSLog(@"%s", __FUNCTION__);
+}
 - (void)ecEventDidSelected:(id<ECEventDelegate>)event{
     NSLog(@"%s startDate:%@, endDate:%@", __FUNCTION__,
           [NSDate dateWithTimeIntervalSince1970:event.startDate],

@@ -27,7 +27,7 @@
 
 @optional
 - (void)ecEventDidSelected:(id<ECEventDelegate>)event;
-
+- (void)handleAddEvent:(id)sender;
 - (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar;
 - (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar;
 @end
