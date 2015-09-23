@@ -25,7 +25,12 @@
 //    }
 //    
 //    NSLog(@"%@", set);
+    NSProxy *ns;
     
+//    dispatch_group_create();
+//    
+//    dispatch_group_async(dispatch_group_t group, dispatch_queue_t queue, ^{})
+//    dispatch_group_notify(<#dispatch_group_t group#>, <#dispatch_queue_t queue#>, <#^(void)block#>)
     return YES;
 }
 
